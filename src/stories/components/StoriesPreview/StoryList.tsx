@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { FiPlus } from "react-icons/fi";
-import { timeAgo } from "../../../lib/formatDate";
+
+import { timeAgo } from "@/lib/formatDate";
 import { convertFileToBase64 } from "../../../lib/transformFile";
 import { useCreateStory } from "../../hooks/useCreateStory";
 import { useGetStories } from "../../hooks/useGetStories";
@@ -13,8 +14,6 @@ type StoryListProps = {
 
 export const StoryList = (props: StoryListProps) => {
   const { onClickStory } = props;
-
-
 
   const { stories, isLoading } = useGetStories();
 
@@ -60,7 +59,7 @@ export const StoryList = (props: StoryListProps) => {
             alt="Story loading"
             className="w-14 h-14 rounded-full object-cover"
           />
-        </StoryItem>  
+        </StoryItem>
       )}
 
       {isLoading && <StorySkeleton />}
