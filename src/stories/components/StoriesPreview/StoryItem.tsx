@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from "react";
+import type { HTMLAttributes, PropsWithChildren } from "react";
 import { cn } from "../../../lib/utils";
 
-type StoryItemProps = PropsWithChildren & HTMLDivElement;
+type StoryItemProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
 export const StoryItem = (props: StoryItemProps) => {
   const { children, className, ...rest } = props;
