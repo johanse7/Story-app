@@ -157,4 +157,10 @@
 
 .fade-out {
   animation: fade-out 0.5s ease-in-out;
-} 
+}
+
+@layer components {
+  .pl-container {
+    padding-left: max(calc((100% - 1280px) / 2), 20px);
+  }
+}

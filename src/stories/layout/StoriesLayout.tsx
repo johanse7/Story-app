@@ -12,8 +12,8 @@ export const StoriesLayout = () => {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-br from-white to-gray-100">
-      <header className="flex items-center gap-4 mb-10">
+    <div className="min-h-screen py-8 bg-gradient-to-br from-white to-gray-100">
+      <header className="flex items-center gap-4 mb-10 px-5">
         <div className="bg-white rounded-full p-3 shadow-md flex items-center justify-center">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="#F56040" strokeWidth="2" />
@@ -25,15 +25,14 @@ export const StoriesLayout = () => {
           Stories
         </span>
       </header>
-      <main>
-        <StoryList onClickStory={setIndexStorySelected} />
-        {indexStorySelected !== null && (
-          <StorySlideContent
-            onClose={handleCloseStory}
-            indexSelected={indexStorySelected}
-          />
-        )}
-      </main>
+
+      <StoryList onClickStory={setIndexStorySelected} />
+      {indexStorySelected !== null && (
+        <StorySlideContent
+          onClose={handleCloseStory}
+          indexSelected={indexStorySelected}
+        />
+      )}
     </div>
   );
 };
