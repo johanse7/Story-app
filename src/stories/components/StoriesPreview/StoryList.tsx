@@ -6,6 +6,7 @@ import { useCreateStory } from "../../hooks/useCreateStory";
 import { useGetStories } from "../../hooks/useGetStories";
 import { StoryItem } from "./StoryItem";
 import { StorySkeleton } from "./StorySkeleton";
+import { useGetOPtimisticStories } from "@/stories/hooks/useGeOptimisticStories";
 
 type StoryListProps = {
   onClickStory: (index: number) => void;
@@ -16,7 +17,8 @@ export const StoryList = (props: StoryListProps) => {
 
   const { stories, isLoading } = useGetStories();
 
-  const { isPending, mutate: createStory, variables } = useCreateStory();
+  const { isPending, mutate: createStory } = useCreateStory();
+  const variablesOptimistic = useGetOPtimisticStories();
 
   const handleClickStory = (index: number) => () => {
     onClickStory(index);
@@ -52,14 +54,26 @@ export const StoryList = (props: StoryListProps) => {
           />
         </StoryItem>
 
-        {isPending && (
-          <StoryItem className="bg-gradient-to-tr from-pink-500 via-yellow-400 to-purple-50 opacity-50">
-            <img
-              src={variables.image}
-              alt="Story loading"
-              className="w-14 h-14 rounded-full object-cover"
-            />
-          </StoryItem>
+        {isPending && variablesOptimistic.length && (
+          <div className="flex gap-x-4 select-none">
+            {variablesOptimistic.map(({ image, submittedAt }, index) => (
+              <div
+                className="flex  flex-col gap-1 items-center"
+                key={index + "story-optimistic"}
+              >
+                <StoryItem className="bg-gradient-to-tr from-pink-500 via-yellow-400 to-purple-50 opacity-50">
+                  <img
+                    src={image}
+                    alt="Story loading"
+                    className="w-14 h-14 rounded-full object-cover"
+                  />
+                </StoryItem>
+                <span className="text-xs text-gray-500">
+                  {timeAgo(submittedAt)}
+                </span>
+              </div>
+            ))}
+          </div>
         )}
 
         {isLoading && <StorySkeleton />}

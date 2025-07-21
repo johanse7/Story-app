@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { addStory } from "../mocks/data";
 
 export const useCreateStory = () => {
@@ -12,6 +13,7 @@ export const useCreateStory = () => {
       });
       console.log("Story added:", data);
     },
+    mutationKey: ["createStory"],
   });
 
   return mutation;

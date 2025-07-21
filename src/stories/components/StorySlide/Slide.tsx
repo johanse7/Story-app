@@ -70,10 +70,10 @@ export const Slide = ({
   return (
     <motion.div
       key={story.id}
-      className="flex flex-col items-center justify-center h-full p-4  rounded-lg"
+      className="flex flex-col items-center justify-center h-svh p-4 rounded-lg"
       custom={direction}
       variants={variants}
-      initial="enter"
+      initial="enter"   
       animate="center"
       exit="exit"
       transition={{ duration: 0.4, ease: "easeInOut" }}

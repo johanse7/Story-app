@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getStories } from "../mocks/data";
 
-export const useGetStories = () => {
+export const useGetStories = () => {  
   const { data, ...rest } = useQuery({
     queryKey: ["stories"],
     queryFn: getStories,
