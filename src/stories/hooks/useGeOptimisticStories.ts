@@ -6,7 +6,7 @@ type StoryOPtimistic = Story & {
 };
 
 export const useGetOPtimisticStories = () => {
-  const variablesOptimistic = useMutationState<StoryOPtimistic>({
+  const variablesOptimistic = [...useMutationState<StoryOPtimistic>({
     filters: { mutationKey: ["createStory"], status: "pending" },
     select: (mutation) => {
       return {
@@ -14,8 +14,7 @@ export const useGetOPtimisticStories = () => {
         submittedAt: mutation.state.submittedAt,
       };
     },
-  }).toSorted((a, b) => b.submittedAt - a.submittedAt);
+  })].sort((a, b) => b.submittedAt - a.submittedAt);
 
   return variablesOptimistic;
 };
-  

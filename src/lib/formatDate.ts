@@ -1,4 +1,4 @@
-export function timeAgo(pastDate: Date) {
+export function timeAgo(pastDate: Date | number) {
   const now = new Date().getTime();
   const past = new Date(pastDate).getTime();
   const diffMs = now - past;
